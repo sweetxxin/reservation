@@ -90,7 +90,7 @@ private HallService hallService;
             message.setSuccess(true);
         }else{//存在该用户名，
             if (password.equals(user.getMobile()+"")||user.getPassword().equals(password)){//用户名密码都对
-                if (u==null&&user.getOpenId()==null&&!user.getOpenId().equals("")){//openID还没有绑定
+                if (u==null&&(user.getOpenId()==null||!user.getOpenId().equals(""))){//openID还没有绑定
                     user.setOpenId(openId);
                     userService.saveUser(user);
                     message.setMessage("登陆成功");
