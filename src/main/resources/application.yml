@@ -1,0 +1,48 @@
+server:
+  port: 7443
+  ssl:
+    key-store: classpath:static/ssl/1967364_www.sweetxxin.top.pfx
+    key-store-password: 735BpsEc
+    key-store-type: PKCS12
+http:
+  port: 7777
+spring:
+  profiles:
+    active: prod
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://47.94.145.112:3306/reservation?useUnicode=true&characterEncoding=UTF8&serverTimezone=GMT%2B8&useSSL=false
+    username: root
+    password: root
+  jpa:
+    properties:
+      hibernate:
+        format_sql: true
+        show-sql: true
+  devtools:
+    restart:
+      enabled: true
+  thymeleaf:
+    cache: false
+    prefix: classpath:/templates/
+    suffix: .html
+    encoding: UTF-8
+    mode: HTML
+  mvc:
+    static-path-pattern: /static/**
+  resources:
+    static-locations: classpath:/static/
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+intercept:
+  url: /main,/shop,/hall,/order,/statistic
+wx:
+  appId: wx81c1c8ce2d7248ad
+  appSecret: 18e6b397da7c2e688721d63c3bf008b1
+  template:
+    orderNew: MUxqNfdnJHWN4P6gy-KoWYLr77k_3ka3gTxPS9H-ZZ0
+    orderFinish: U3oBf1mLcVJulb2GlGsVaruKPnKjffSyCHvOkb20GtE
+    orderChange: clR1H8AfFR7tr39BOsEz7oNMJejlEpGav0tojHMXo3s
+
+

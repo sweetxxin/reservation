@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .btn-group{
+            width: 23rem;
+            margin: 0px auto;
+            margin-top: 2rem;
+        }
+        .page-desc{
+            text-align: center;
+        }
+        .container{
+            width: 100%;
+            margin-top: 2rem;
+        }
+    </style>
+</head>
+<body>
+<div id="order" class="mdui-container container">
+    <div class="mdui-table-fluid">
+        <table class="mdui-table mdui-table-hoverable">
+            <thead>
+            <tr>
+                <th>#</th>
+                <th>订单编号</th>
+                <th>所属商店</th>
+                <th>顾客</th>
+                <th>地点</th>
+                <th>订单状态</th>
+                <th>下单时间</th>
+                <th>订单评价</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr  mdui-dialog="{target: '#order-dialog'}" v-for=" (order,index) in orderList" @click="orderDetail(index)" >
+                <td>{{index+1}}</td>
+                <td>{{order.orderNo}}</td>
+                <td>{{order.shop.name}}</td>
+                <td>{{order.customer.userName}}</td>
+                <td>{{order.address}}</td>
+                <td>{{orderStatus[order.status-1]}}</td>
+                <td>{{order.createTime}}</td>
+                <td>{{order.assessment}}</td>
+            </tr>
+            </tbody>
+        </table>
+        <div class="btn-group">
+            <button @click="first()" class="mdui-btn mdui-btn-raised mdui-btn-dense mdui-color-pink mdui-ripple">首页</button>
+            <button :disabled="preButtonDisabled"   @click="pre()" class="mdui-btn mdui-btn-raised mdui-btn-dense mdui-color-pink mdui-ripple">上一页</button>
+            <button :disabled="nextButtonDisabled" @click="next()" class="mdui-btn mdui-btn-raised mdui-btn-dense mdui-color-pink mdui-ripple">下一页</button>
+            <button @click="last()" class="mdui-btn mdui-btn-raised mdui-btn-dense mdui-color-pink mdui-ripple">尾页</button>
+            <p class="page-desc">{{msg}}</p>
+        </div>
+    </div>
+    <div th:include="orderDialog.html"></div>
+</div>
+<script>
+    var order_vue = new Vue({
+        el:"#order",
+        data(){
+            return {
+                current:0,
+                each:4,
+                orderList:[],
+                count:0,
+                total:0,
+                preButtonDisabled: true,
+                nextButtonDisabled: false,
+                order_input:{customer:{},shop:{}},
+                inputDisabled:true,
+                orderStatus:["创建","受理中","订单完成","订单失败"]
+            }
+        },
+        mounted() {
+            this.getOrderList(null,null);
+        },
+        methods:{
+            getOrderList(col,val){
+                this.$http.post("/order/list/" + this.current, {
+                    "col": col,
+                    "val": val,
+                    "each":this.each
+                }, {emulateJSON: true}).then(function (res) {
+
+                    if (res.data.success){
+                        this.orderList = res.body.data.content;
+                        this.count= res.body.data.totalPages;
+                        this.total= res.body.data.totalElements;
+                        if (this.total<=res.body.data.size&&this.total>0) {
+                            this.each = this.total;
+                        }
+                    }
+                    console.log(res.data)
+                })
+            },
+            pre:function () {
+                this.current--;
+                this.getOrderList(null,null);
+            },
+            next:function () {
+                this.current++;
+                this.getOrderList(null,null);
+            } ,
+            first:function () {
+                if (this.current!=0&&this.count>0){
+                    this.current=0;
+                    this.getOrderList(null,null);
+                }
+            },
+            last:function () {
+                this.current=this.count-1;
+                if (this.current!=this.count&&this.count>1){
+                    this.getOrderList(null,null);
+                }
+            },
+            searchOrder(val){
+                this.current = 0;
+                if (val!=null||val!=""){
+                    this.searchVal = val;
+                }
+                this.getOrderList(null,this.searchVal)
+            },
+            orderDetail(index){
+                this.order_input = this.orderList[index];
+
+            },
+            closeDialog(){
+                this.order_input={customer:{},shop:{}};
+            }
+        },
+        computed: {
+            msg: function () {
+                if (this.current <= 0) {
+                    this.preButtonDisabled = true;
+                    if (this.total == 0 || this.total <= this.each || this.count <= 0) {
+                        this.nextButtonDisabled = true;
+                    }else{
+                        this.nextButtonDisabled = false;
+                    }
+                    console.log("current can not < 0")
+                } else if (this.current >= this.count-1) {
+                    this.preButtonDisabled = false;
+                    this.nextButtonDisabled = true;
+                    console.log("current can not >" + this.count)
+                } else {
+                    this.preButtonDisabled = false;
+                    this.nextButtonDisabled = false;
+                    console.log("current ok")
+                }
+                return "当前第" + (this.current+1) + "页(共" + this.count + "页," + this.total + "条数据)";
+            }
+        }
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="/static/mdui-v0.4.2/js/mdui.min.js"></script>
+    <link rel="stylesheet" href="/static/mdui-v0.4.2/css/mdui.min.css"/>
+    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+    <style>
+        .textfield{
+            height: 12rem;
+            padding-bottom: 1rem;
+        }
+        .icons{
+            font-size: 8rem;
+        }
+        .label{
+            font-size: 3rem;
+            width: 30%;
+            margin-left: 10rem;
+            margin-top: 1rem;
+        }
+        .text{
+            font-size: 4rem;
+            width: 80%;
+            margin-left: 15%;
+            margin-top: 2rem;
+            height: 5rem;
+        }
+        .area{
+            font-size: 3rem;
+            margin-top: 4rem;
+            line-height: 3rem;
+        }
+        .mdui-textfield-counter{
+            font-size: 2rem;
+        }
+        .btn{
+            height: 6rem;
+            width: 20rem;
+            font-size: 2rem;
+            margin: 0px auto;
+            display: block;
+            margin-top: 2rem;
+            margin-bottom: 2rem;
+        }
+        .logo{
+            height: 25rem;
+            background: red;
+            margin: 0px auto;
+        }
+        .logon-img{
+            height: 100%;
+            width: 100%;
+        }
+        .time{
+            margin-left: 10rem;
+            width: 80%;
+            height: 8rem;
+            font-size: 3rem;
+            line-height: 3rem;
+        }
+    </style>
+</head>
+<body>
+<div class="logo">
+    <img class="logon-img" src="/static/icon/logo.jpg">
+</div>
+<div class="mdui-container">
+    <div class="mdui-textfield mdui-textfield-floating-label textfield">
+        <i class="mdui-icon material-icons icons">account_circle</i>
+        <label style="margin-left: 10rem;" class="mdui-textfield-label label">姓名</label>
+        <input id="name" required style="margin-left: 10rem;width: 80%"  class="mdui-textfield-input text" />
+    </div>
+    <div class="mdui-textfield mdui-textfield-floating-label textfield">
+        <i class="mdui-icon material-icons icons">smartphone</i>
+        <label style="margin-left: 10rem;width: 30%" class="mdui-textfield-label label">手机号</label>
+        <input id="mobile" required maxlength="11" style="margin-left: 10rem; width: 80%" class="mdui-textfield-input text" />
+    </div>
+    <div class="mdui-textfield mdui-textfield-floating-label textfield">
+        <i class="mdui-icon material-icons icons">access_time</i>
+        <label style="margin-left: 10rem;width: 30%" class="mdui-textfield-label label">预约时间</label>
+        <input id="time" required type="datetime-local"  style="margin-left: 10rem; width: 80%" class="mdui-textfield-input time" />
+    </div>
+    <div class="mdui-textfield mdui-textfield-floating-label">
+        <i class="mdui-icon material-icons icons">home</i>
+        <label style="margin-left: 10rem;width: 30%" class="mdui-textfield-label label">地址</label>
+        <textarea id="address" required style="margin-left: 10rem;width: 80%"  class="mdui-textfield-input area"></textarea>
+    </div>
+    <!-- 禁用状态 -->
+    <div class="mdui-textfield textfield">
+        <i class="mdui-icon material-icons icons">shop</i>
+        <label style="margin-left: 10rem;width: 30%" class="mdui-textfield-label label">商店</label>
+        <input th:value="${shop.name}" style="margin-left: 10rem;width: 80%"  class="mdui-textfield-input text" type="text" disabled/>
+    </div>
+    <button id="reservation" class="mdui-btn mdui-btn-raised mdui-btn-dense mdui-color-pink mdui-ripple btn">预约</button>
+</div>
+</body>
+<script th:inline="javascript">
+    $('#reservation').click(function () {
+        var time = $('#time').val().replace("T"," ");
+        $.post("/reservation/new/"+[[${shop.mainId}]],
+            {"name":$("#name").val(),"address":$('#address').val(),"time":time,"mobile":$('#mobile').val()},function (res) {
+            if (res.success){
+                alert(res.message);
+                location.reload();
+            }else{
+                alert("预约失败！！！！")
+            }
+        })
+    })
+</script>
+</html>

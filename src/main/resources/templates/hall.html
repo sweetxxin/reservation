@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .btn-group{
+            width: 23rem;
+            margin: 0px auto;
+            margin-top: 2rem;
+        }
+        .page-desc{
+            text-align: center;
+        }
+        .container{
+            width: 100%;
+            margin-top: 2rem;
+        }
+    </style>
+</head>
+<body>
+<div id="hall" class="mdui-container container">
+    <div class="mdui-table-fluid">
+        <table class="mdui-table mdui-table-hoverable">
+            <thead>
+            <tr>
+                <th>#</th>
+                <th>营业厅名</th>
+                <th>负责人</th>
+                <th>地址</th>
+                <th>联系电话</th>
+                <th>创建电话</th>
+                <th>操作</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr v-for=" (hall,index) in hallList" @click="hallDetail(hall.mainId)">
+                <td>{{index+1}}</td>
+                <td>{{hall.name}}</td>
+                <td>{{hall.charge.userName}}</td>
+                <td>{{hall.address}}</td>
+                <td>{{hall.phone}}</td>
+                <td>{{hall.createTime}}</td>
+                <td>
+                    <button  @click="deleteHall(hall.mainId,'confirm')"  mdui-dialog="{target: '#delete-hall'}"  class="mdui-btn mdui-btn-raised mdui-btn-dense mdui-color-pink mdui-ripple">删除</button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <div class="btn-group">
+            <button @click="first()" class="mdui-btn mdui-btn-raised mdui-btn-dense mdui-color-pink mdui-ripple">首页</button>
+            <button :disabled="preButtonDisabled"   @click="pre()" class="mdui-btn mdui-btn-raised mdui-btn-dense mdui-color-pink mdui-ripple">上一页</button>
+            <button :disabled="nextButtonDisabled" @click="next()" class="mdui-btn mdui-btn-raised mdui-btn-dense mdui-color-pink mdui-ripple">下一页</button>
+            <button @click="last()" class="mdui-btn mdui-btn-raised mdui-btn-dense mdui-color-pink mdui-ripple">尾页</button>
+            <p class="page-desc">{{msg}}</p>
+        </div>
+    </div>
+    <div th:include="hallDialog.html"></div>
+    <div class="mdui-dialog" id="alert">
+        <div class="mdui-dialog-title">添加商店失败</div>
+        <div class="mdui-dialog-content">营业厅信息可能不完整</div>
+        <div class="mdui-dialog-actions">
+            <button class="mdui-btn mdui-ripple" mdui-dialog-confirm>确定</button>
+        </div>
+    </div>
+    <div class="mdui-dialog" id="delete-hall">
+        <div class="mdui-dialog-content">确定删除?</div>
+        <div class="mdui-dialog-actions">
+            <button @click="closeDialog()" class="mdui-btn mdui-ripple" mdui-dialog-close>取消</button>
+            <button @click="deleteHall(deleteId,'yes')" class="mdui-btn mdui-ripple" mdui-dialog-confirm>确定</button>
+        </div>
+    </div>
+    <div th:include="hallDetail.html"></div>
+</div>
+<script>
+    var hall_vue = new Vue({
+        el:"#hall",
+        data(){
+            return {
+                current:0,
+                each:4,
+                hallList:[],
+                count:0,
+                total:0,
+                preButtonDisabled: true,
+                nextButtonDisabled: false,
+                hall_input:{charge:{}},
+                deleteId:-1,
+                inputDisabled:true,
+                searchVal:"",
+                showHallTab:true,
+                hallStatistic:{}
+            }
+        },
+        mounted() {
+            this.getHallList(null,null);
+        },
+        methods:{
+            getHallList(col,val){
+                this.$http.post("/hall/list/" + this.current, {
+                    "col": col,
+                    "val": val,
+                    "each":this.each
+                }, {emulateJSON: true}).then(function (res) {
+                    if ( res.data.success){
+                        this.hallList = res.body.data.content;
+                        this.count= res.body.data.totalPages;
+                        this.total= res.body.data.totalElements;
+                        if (this.total<=res.body.data.size&&this.total>0) {
+                            this.each = this.total;
+                        }
+                    }
+                    console.log(res.data)
+                })
+            },
+            pre:function () {
+                this.current--;
+                this.getHallList(null,null);
+            },
+            next:function () {
+                this.current++;
+                this.getHallList(null,null);
+            } ,
+            first:function () {
+                if (this.current!=0&&this.count>0){
+                    this.current=0;
+                    this.getHallList(null,null);
+                }
+            },
+            last:function () {
+                this.current=this.count-1;
+                if (this.current!=this.count&&this.count>1){
+                    this.getHallList(null,null);
+                }
+            },
+            searchHall(val){
+                    this.current = 0;
+                    if (val!=null||val!=""){
+                        this.searchVal = val;
+                    }
+                    this.getHallList(null, this.searchVal);
+            },
+            hallDetail(index){
+                this.$http.post("/statistic/hall/" + index).then(function (res) {
+                    console.log(res.data);
+                    this.hallStatistic = res.data.data;
+                    new mdui.Dialog("#hall-detail").open()
+                })
+            },
+            saveHall(){
+                if (this.hall_input.createTime.indexOf("T")!=-1){
+                    this.hall_input.createTime=this.hall_input.createTime.replace("T"," ");
+                }
+                this.$http.post("/hall/save",{"hall":JSON.stringify(this.hall_input)}, {emulateJSON: true}).then(function (res) {
+                    if (res.data.success){
+                        this.hall_input={charge:{}};
+                        this.getHallList(null,null);
+                    }else{
+                        var alert = new mdui.Dialog("#alert");
+                        alert.open();
+                    }
+
+                })
+            },
+            deleteHall(index,confirm){
+                if (confirm=="confirm"){
+                    this.deleteId = index;
+                } else if (confirm=="yes") {
+                    this.$http.post("/hall/delete/"+this.deleteId).then(function (res) {
+                        this.hall_input={charge:{}};
+                        this.getHallList(null,null);
+                        order_vue.getOrderList(null,null);
+                        shop_vue.getShopList(null,null);
+                    })
+                }else{
+                    this.deleteId = -1;
+                }
+            },
+            closeDialog(){
+                this.hall_input={charge:{}};
+                this.deleteId = -1;
+            }
+        },
+        computed: {
+            msg: function () {
+                if (this.current <= 0) {
+                    this.preButtonDisabled = true;
+                    if (this.total == 0 || this.total <= this.each || this.count <= 0) {
+                        this.nextButtonDisabled = true;
+                    }else{
+                        this.nextButtonDisabled = false;
+                    }
+                    console.log("current can not < 0")
+                } else if (this.current >= this.count-1) {
+                    this.preButtonDisabled = false;
+                    this.nextButtonDisabled = true;
+                    console.log("current can not >" + this.count)
+                } else {
+                    this.preButtonDisabled = false;
+                    this.nextButtonDisabled = false;
+                    console.log("current ok")
+                }
+                return "当前第" + (this.current+1) + "页(共" + this.count + "页," + this.total + "条数据)";
+            }
+        }
+    })
+</script>
+</body>
+</html>

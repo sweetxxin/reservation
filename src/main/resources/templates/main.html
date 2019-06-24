@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="/static/mdui-v0.4.2/js/mdui.min.js"></script>
+    <link rel="stylesheet" href="/static/mdui-v0.4.2/css/mdui.min.css"/>
+    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/vue/2.6.9/vue.min.js"></script>
+    <script src="https://cdn.bootcss.com/vue-resource/1.5.0/vue-resource.min.js"></script>
+    <style>
+        .spacer{
+            width: 60%;
+        }
+        .active{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+<div class="mdui-appbar" id="main">
+    <div class="mdui-toolbar mdui-color-indigo">
+        <a href="javascript:;" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">menu</i></a>
+        <a href="javascript:;" class="mdui-typo-title" th:text="${session.user.userName}"></a>
+        <div class="mdui-toolbar-spacer spacer"></div>
+        <button  v-bind:class="{active: isActive}" @click="add()" class="mdui-btn mdui-btn-icon mdui-btn-dense mdui-color-theme-accent mdui-ripple"><i class="mdui-icon material-icons">add</i></button>
+        <div class="mdui-textfield mdui-textfield-expandable">
+            <button @click="search()" class="mdui-textfield-icon mdui-btn mdui-btn-icon">
+                <i class="mdui-icon material-icons">search</i>
+            </button>
+            <input v-model="searchVal" class="mdui-textfield-input" type="text" placeholder="Search"/>
+            <button class="mdui-textfield-close mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">close</i></button>
+        </div>
+        <a href="javascript:;" @click="refresh()" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">refresh</i></a>
+        <a href="javascript:;" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">more_vert</i></a>
+    </div>
+    <div class="mdui-tab mdui-color-indigo" mdui-tab>
+        <a th:if="${session.user.type == 4}"  @click="changeTab('hall')"  href="#hall" class="mdui-ripple mdui-ripple-white">营业厅</a>
+        <a th:if="${session.user.type > 2}"  @click="changeTab('shop')"  href="#shop" class="mdui-ripple mdui-ripple-white">商店</a>
+        <a @click="changeTab('order')"  href="#order" class="mdui-ripple mdui-ripple-white">订单</a>
+        <a th:if="${session.user.type > 2}" @click="changeTab('statistic')" href="#statistic" class="mdui-ripple mdui-ripple-white">统计</a>
+    </div>
+</div>
+<div class="mdui-container-fluid">
+    <div th:if="${session.user.type == 4}" th:include="hall.html"></div>
+    <div th:if="${session.user.type > 2}" th:include="shop.html"></div>
+    <div th:include="order.html"></div>
+    <div  th:if="${session.user.type > 2}" th:include="statistic.html"></div>
+</div>
+
+<script th:inline="javascript">
+    var main_vue = new Vue({
+        el:"#main",
+        data(){
+            return{
+                searchVal:"",
+                currentTab:"shop",
+                isActive:false,
+                userType:[[${session.user.type}]]
+            }
+        },
+        mounted() {
+           if (this.userType==4){
+               this. currentTab="hall";
+           } else if (this.userType==3){
+               this. currentTab="shop";
+           } else{
+               this. currentTab="order";
+           }
+        },
+        methods:{
+            search () {
+                if (this.searchVal!=""){
+                    if (this.currentTab=="shop"&&typeof(shop_vue) != "undefined"){
+                        console.log("searchShop");
+                        shop_vue.searchShop(this.searchVal)
+                    }else if (typeof(shop_vue) == "undefined"||this.currentTab=="order"){
+                        order_vue.searchOrder(this.searchVal)
+                    }else if(this.currentTab=="hall"){
+                        hall_vue.searchHall(this.searchVal)
+                    }
+                }
+            },
+            refresh() {
+                this.searchVal="";
+                if (this.currentTab=="shop") {
+                    shop_vue.each=4;
+                    shop_vue.searchVal="";
+                    shop_vue.getShopList(null,null);
+                }else if (this.currentTab=="order") {
+                    order_vue.each = 4;
+                    order_vue.searchVal="";
+                    order_vue.getOrderList(null,null);
+                }else if (this.currentTab=="hall"){
+                    hall_vue.each = 4;
+                    hall_vue.searchVal="";
+                    hall_vue.getOrderList(null,null);
+                }else{
+                    window.location="/main/#statistic";
+                }
+            },
+            changeTab(tab){
+                this.currentTab=tab;
+                if (this.userType==4&&tab=="shop"){
+                    this.isActive=true;
+                } else if (tab=="order"){
+                    this.isActive=true;
+                }else if (tab=="statistic"){
+                    this.isActive=true;
+                } else{
+                    this.isActive=false;
+                }
+            },
+            add(){
+                if (this.currentTab=="shop"){
+                    new mdui.Dialog('#shop-dialog').open();
+                } else if (this.currentTab=="hall"){
+                   new mdui.Dialog('#hall-dialog').open();
+                }
+            }
+        }
+    })
+</script>
+</body>
+</html>

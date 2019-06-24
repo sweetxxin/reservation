@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.bootcss.com/echarts/4.2.1-rc1/echarts-en.common.js"></script>
+</head>
+<body>
+<div id="statistic" class="mdui-container container">
+    <div>
+        <ul class="mdui-list" style="max-width: 360px;">
+            <li class="mdui-list-item">
+                <i class="mdui-list-item-icon mdui-icon material-icons">move_to_inbox</i>
+                <div class="mdui-list-item-content" id="hallCount" >营业厅总数:</div>
+            </li>
+            <li class="mdui-list-item">
+                <i class="mdui-list-item-icon mdui-icon material-icons">send</i>
+                <div class="mdui-list-item-content" id="shopCount">商店总数:</div>
+            </li>
+            <li class="mdui-list-item">
+                <i class="mdui-list-item-icon mdui-icon material-icons">error</i>
+                <div class="mdui-list-item-content" id="totalOrder">累计订单量:</div>
+            </li>
+        </ul>
+    </div>
+    <div id="shopChart" style="width: 400px;height:400px;left: 24rem;
+    position: absolute;
+    top: 10rem;">
+    </div>
+    <div id="yearChart" style="width: 400px;height:400px;left: 50rem;
+    position: absolute;
+    top: 10rem;">
+    </div>
+    <div id="hallPie" style="width: 300px;height:200px;left: 2rem;
+    position: absolute;
+    top: 20rem;">
+    </div>
+</div>
+<script>
+    var statistic;
+    $(document).ready(function () {
+        $.post("/statistic/all",{},function (res) {
+            statistic = res.data;
+            $('#hallCount').html("营业厅总数:"+statistic.hallAmount);
+            $('#shopCount').html("商店总数:"+statistic.shopAmount);
+            $('#totalOrder').html("累计订单:"+statistic.totalOrder);
+            var shopChart = echarts.init(document.getElementById('shopChart'));
+            var shopOption = {
+                title: {
+                    text: '商店订单top'
+                },
+                tooltip: {},
+                legend: {
+                    data:['订单']
+                },
+                xAxis: {
+                    data: Object.keys(statistic.topShop)
+                },
+                yAxis: {},
+                series: [{
+                    name: '销量',
+                    type: 'bar',
+                    data: getObjectValues(statistic.topShop)
+                }]
+            };
+            shopChart.setOption(shopOption);
+            var yearChart = echarts.init(document.getElementById('yearChart'));
+            var yearOption = {
+                title: {
+                    text: '每年订单'
+                },
+                tooltip: {},
+                xAxis: {
+                    type: 'category',
+                    data: Object.keys(statistic.yearOrder)
+                },
+                yAxis: {
+                    type: 'value'
+                },
+                series: [{
+                    data: getObjectValues(statistic.yearOrder),
+                    type: 'line'
+                }]
+            };
+            yearChart.setOption(yearOption);
+
+            var hallData = [];
+            var i=0;
+            for (var ele in statistic.rankHall) {
+                hallData[i]={value:statistic.rankHall[ele],name:ele};
+                i++;
+            }
+            var hallPie = echarts.init(document.getElementById('hallPie'));
+            var hallOption  = {
+                title : {
+                    text: '营业厅订单比例',
+                    x:'right'
+                },
+                tooltip : {
+                    trigger: 'item',
+                    formatter: "{a} <br/>{b} : {c} ({d}%)"
+                },
+                series : [
+                    {
+                        name: '访问来源',
+                        type: 'pie',
+                        radius : '55%',
+                        center: ['50%', '60%'],
+                        data:hallData,
+                        itemStyle: {
+                            emphasis: {
+                                shadowBlur: 10,
+                                shadowOffsetX: 0,
+                                shadowColor: 'rgba(0, 0, 0, 0.5)'
+                            }
+                        }
+                    }
+                ]
+            };
+
+            hallPie.setOption(hallOption );
+        })
+    })
+    function getObjectValues(object)
+    {
+        var values = [];
+        for (var property in object)
+            values.push(object[property]);
+        return values;
+    }
+</script>
+</body>
+</html>

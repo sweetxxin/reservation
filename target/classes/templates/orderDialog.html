@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div th:fragment="ordrDialog" class="mdui-dialog" id="order-dialog">
+    <div class="mdui-dialog-title">详细信息</div>
+    <div class="mdui-dialog-content">
+        <div style="width: 40%;float: left;margin-left: 7%;" class="mdui-textfield">
+            <label class="mdui-textfield-label">商店名</label>
+            <input disabled v-model="order_input.shop.name" class="mdui-textfield-input" />
+        </div>
+        <div style="width: 40%;float: left;margin-left: 7%;" class="mdui-textfield">
+            <label class="mdui-textfield-label">商店地址</label>
+            <input  disabled v-model="order_input.shop.address" class="mdui-textfield-input"/>
+        </div>
+        <div style="width: 40%;float: left;margin-left: 7%;" class="mdui-textfield">
+            <label class="mdui-textfield-label">顾客名</label>
+            <input disabled v-model="order_input.customer.userName" class="mdui-textfield-input" />
+        </div>
+        <div style="width: 40%;float: left;margin-left: 7%;" class="mdui-textfield">
+            <label class="mdui-textfield-label">安装地点</label>
+            <input  disabled v-model="order_input.address" class="mdui-textfield-input"/>
+        </div>
+        <div style="width: 40%;float: left;margin-left: 7%;" class="mdui-textfield">
+                <label class="mdui-textfield-label">订单编号</label>
+                <input disabled v-model="order_input.orderNo" class="mdui-textfield-input"/>
+            </div>
+            <div style="width: 40%;float: left;margin-left: 7%;" class="mdui-textfield">
+                <label class="mdui-textfield-label">下单时间</label>
+                <input disabled v-model="order_input.createTime" class="mdui-textfield-input"/>
+            </div>
+            <div style="width: 40%;float: left;margin-left: 7%;" class="mdui-textfield">
+                <label class="mdui-textfield-label">评价</label>
+                <input disabled v-model="order_input.assessment" class="mdui-textfield-input" type="评价"/>
+            </div>
+        </div>
+    <div class="mdui-dialog-actions">
+        <button @click="closeDialog()" class="mdui-btn mdui-ripple" mdui-dialog-close>关闭</button>
+    </div>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div th:fragment="hallDetail" class="mdui-dialog" id="hall-detail">
+    <div class="mdui-dialog-title">统计信息</div>
+    <div class="mdui-dialog-content">
+        <div style="width: 40%;float: left;margin-left: 7%;" class="mdui-textfield">
+            <label class="mdui-textfield-label">商店总数</label>
+            <input disabled v-model="hallStatistic.shopAmount" class="mdui-textfield-input" type="text"/>
+        </div>
+        <div style="width: 40%;float: left;margin-left: 7%;" class="mdui-textfield">
+            <label class="mdui-textfield-label">订单总数</label>
+            <input disabled v-model="hallStatistic.orderAmount" class="mdui-textfield-input" type="text"/>
+        </div>
+        <div style="width: 40%;float: left;margin-left: 7%;" class="mdui-textfield">
+            <label class="mdui-textfield-label">最热销商店</label>
+            <input v-if="hallStatistic.topShop" disabled v-model="hallStatistic.topShop.name" class="mdui-textfield-input" type="text"/>
+        </div>
+        <div style="width: 40%;float: left;margin-left: 7%;" class="mdui-textfield">
+            <label class="mdui-textfield-label">最高订单量</label>
+            <input v-if="hallStatistic.topAmount" disabled v-model="hallStatistic.topAmount" class="mdui-textfield-input" type="text"/>
+        </div>
+    </div>
+    <div class="mdui-dialog-actions">
+        <button class="mdui-btn mdui-ripple" mdui-dialog-confirm>关闭</button>
+    </div>
+</div>
+</body>
+</html>

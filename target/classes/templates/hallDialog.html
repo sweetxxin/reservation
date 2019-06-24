@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div th:fragment="hallDialog" class="mdui-dialog" id="hall-dialog">
+    <div class="mdui-dialog-title">详细信息</div>
+    <div class="mdui-dialog-content">
+        <input type="hidden" v-model="hall_input.mainId"/>
+            <div style="width: 40%;float: left;margin-left: 7%;" class="mdui-textfield">
+                <label class="mdui-textfield-label">营业厅名</label>
+                <input v-model="hall_input.name" class="mdui-textfield-input" type="营业厅名"/>
+            </div>
+        <div style="width: 40%;float: left;margin-left: 7%;" class="mdui-textfield">
+            <label class="mdui-textfield-label">负责人</label>
+            <input v-model="hall_input.charge.userName" class="mdui-textfield-input" type="营业厅名"/>
+        </div>
+            <div style="width: 40%;float: left;margin-left: 7%;" class="mdui-textfield">
+                <label class="mdui-textfield-label">所在地址</label>
+                <input v-model="hall_input.address" class="mdui-textfield-input" type="所在地址<"/>
+            </div>
+            <div style="width: 40%;float: left;margin-left: 7%;" class="mdui-textfield">
+                <label class="mdui-textfield-label">联系方式</label>
+                <input v-model="hall_input.phone" class="mdui-textfield-input" type="联系方式"/>
+            </div>
+            <div style="width: 40%;float: left;margin-left: 7%;" class="mdui-textfield">
+                <label class="mdui-textfield-label">创建时间</label>
+                <input v-model="hall_input.createTime" class="mdui-textfield-input" type="datetime-local"/>
+            </div>
+    </div>
+    <div class="mdui-dialog-actions">
+        <button @click="closeDialog()" class="mdui-btn mdui-ripple" mdui-dialog-close>关闭</button>
+        <button @click="saveHall()" class="mdui-btn mdui-ripple" mdui-dialog-confirm>确定</button>
+    </div>
+</div>
+</body>
+</html>

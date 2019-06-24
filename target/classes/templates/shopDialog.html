@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+
+    </style>
+</head>
+<body>
+    <div th:fragment="shopDialog" class="mdui-dialog" id="shop-dialog">
+            <div class="mdui-dialog-title">详细信息</div>
+            <div class="mdui-dialog-content">
+                <input type="hidden" v-model="shop_input.mainId"/>
+                <div style="height: 15rem;" class="mdui-panel mdui-panel-gapless gapless-div" mdui-panel>
+                    <div class="mdui-panel-item">
+                        <div class="mdui-panel-item-header">店长信息</div>
+                        <input type="hidden" v-model="shop_input.charge.mainId"/>
+                        <div class="mdui-panel-item-body">
+                            <div style="width: 40%;float: left;margin-left: 7%;" class="mdui-textfield" >
+                            <label class="mdui-textfield-label">用户名</label>
+                            <input  v-model="shop_input.charge.userName" class="mdui-textfield-input"  type="用户名"/>
+                            </div>
+                            <div style="width: 40%;float: left;margin-left: 7%;" class="mdui-textfield" >
+                                <label class="mdui-textfield-label">密码</label>
+                                <input  v-model="shop_input.charge.password" class="mdui-textfield-input"  type="密码"/>
+                            </div>
+                            <div style="width: 40%;float: left;margin-left: 7%;" class="mdui-textfield" >
+                                <label class="mdui-textfield-label">手机号</label>
+                                <input  v-model="shop_input.charge.mobile" class="mdui-textfield-input"  type="手机号"/>
+                            </div>
+                            <div style="width: 40%;float: left;margin-left: 7%;" class="mdui-textfield" >
+                                <label class="mdui-textfield-label">创建时间</label>
+                                <input v-if="shop_input.charge.createTime"    v-model="shop_input.charge.createTime" class="mdui-textfield-input"  type="text"/>
+                                <input v-else   v-model="shop_input.charge.createTime" class="mdui-textfield-input"  type="datetime-local"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mdui-panel-item">
+                        <div class="mdui-panel-item-header">商店信息</div>
+                        <div class="mdui-panel-item-body">
+                            <div style="width: 40%;float: left;margin-left: 7%;" class="mdui-textfield" >
+                                <label class="mdui-textfield-label">店名</label>
+                                <input v-model="shop_input.name" class="mdui-textfield-input" type="店名"/>
+                            </div>
+                            <div style="width: 40%;float: left;margin-left: 7%;" class="mdui-textfield" >
+                                <label class="mdui-textfield-label">地址</label>
+                                <input  v-model="shop_input.address" class="mdui-textfield-input" type="地址"/>
+                            </div>
+                            <div style="width: 40%;float: left;margin-left: 7%;" class="mdui-textfield" >
+                                <label  class="mdui-textfield-label">联系方式</label>
+                                <input  v-model="shop_input.phone" class="mdui-textfield-input" type="联系方式"/>
+                            </div>
+                            <div style="width: 40%;float: left;margin-left: 7%;" class="mdui-textfield" >
+                                <label class="mdui-textfield-label">开店日期</label>
+                                <input  v-if="shop_input.createTime"  v-model="shop_input.createTime" class="mdui-textfield-input" type="text"/>
+                                <input  v-else  v-model="shop_input.createTime" class="mdui-textfield-input" type="datetime-local"/>
+                            </div>
+                            <div style="width: 40%;float: left;margin-left: 7%;" class="mdui-textfield" >
+                                <label class="mdui-textfield-label">主营业务</label>
+                                <input  v-model="shop_input.description" class="mdui-textfield-input" type="主营业务"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mdui-panel-item">
+                        <div class="mdui-panel-item-header">营业厅信息</div>
+                        <input type="hidden" v-model="shop_input.hall.mainId"/>
+                        <div class="mdui-panel-item-body">
+                            <div v-if="shop_input.hall.mainId">
+                                <div style="width: 40%;float: left;margin-left: 7%;" class="mdui-textfield" >
+                                    <label class="mdui-textfield-label">营业厅名</label>
+                                    <input disabled  v-model="shop_input.hall.name" class="mdui-textfield-input"  type="营业厅名"/>
+                                </div>
+                            <div style="width: 40%;float: left;margin-left: 7%;" class="mdui-textfield" >
+                                <label class="mdui-textfield-label">所在地址</label>
+                                <input disabled  v-model="shop_input.hall.address" class="mdui-textfield-input"  type="所在地址<"/>
+                            </div>
+                            <div style="width: 40%;float: left;margin-left: 7%;" class="mdui-textfield" >
+                                <label class="mdui-textfield-label">联系方式</label>
+                                <input disabled  v-model="shop_input.hall.phone" class="mdui-textfield-input"  type="联系方式"/>
+                            </div>
+                            <div style="width: 40%;float: left;margin-left: 7%;" class="mdui-textfield" >
+                                <label class="mdui-textfield-label">创建时间</label>
+                                <input disabled  v-model="shop_input.hall.createTime" class="mdui-textfield-input"  type="text"/>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mdui-panel-item">
+                        <div class="mdui-panel-item-header">统计信息</div>
+                        <div class="mdui-panel-item-body">
+                            <div v-if="shop_input.hall.mainId">
+                                <div style="width: 40%;float: left;margin-left: 7%;" class="mdui-textfield" >
+                                    <label class="mdui-textfield-label">订单总数</label>
+                                    <input disabled  v-model="shop_statistic.orderAmount" class="mdui-textfield-input"  type="text"/>
+                                </div>
+                                <div style="width: 40%;float: left;margin-left: 7%;" class="mdui-textfield" >
+                                    <label class="mdui-textfield-label">客户总数</label>
+                                    <input disabled  v-model="shop_statistic.customerAmount" class="mdui-textfield-input"  type="text"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="mdui-dialog-actions">
+                <button @click="closeDialog()" class="mdui-btn mdui-ripple" mdui-dialog-close>关闭</button>
+                <button @click="saveShop()" class="mdui-btn mdui-ripple" mdui-dialog-confirm>确定</button>
+            </div>
+    </div>
+</body>
+</html>

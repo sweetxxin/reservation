@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>后台管理登陆</title>
+    <script src="/static/mdui-v0.4.2/js/mdui.min.js"></script>
+    <link rel="stylesheet" href="/static/mdui-v0.4.2/css/mdui.min.css"/>
+    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+    <style>
+        .container{
+            margin-top: 10rem;
+        }
+        .textfield{
+            width: 30%;
+            margin-left: 35%;
+        }
+        .btn{
+            width: 15%;
+            margin-left: 42.5%;
+            margin-top: 2rem;
+        }
+    </style>
+</head>
+<body>
+<div class="mdui-container container">
+    <div class="mdui-textfield textfield">
+        <i class="mdui-icon material-icons">account_circle</i>
+        <label class="mdui-textfield-label">UserName</label>
+        <input placeholder="UserName" id="username" required class="mdui-textfield-input" type="text"/>
+        <div class="mdui-textfield-error">用户名不能为空</div>
+    </div>
+    <div class="mdui-textfield textfield">
+        <i class="mdui-icon material-icons">lock</i>
+        <label class="mdui-textfield-label">Password</label>
+        <input value="123456" id="password" pattern="^.*(?=.{6,})(?=.*[a-z])(?=.*[A-Z]).*$" required class="mdui-textfield-input" type="text" placeholder="Password"/>
+        <div class="mdui-textfield-error">密码至少 6 位，且包含大小写字母</div>
+        <div class="mdui-textfield-helper">请输入至少 6 位，且包含大小写字母的密码</div>
+    </div>
+        <button id="login" class="mdui-btn mdui-btn-raised mdui-ripple mdui-color-pink btn">登陆</button>
+
+    <div class="mdui-dialog" id="example-1">
+        <div class="mdui-dialog-title">登陆失败</div>
+        <div class="mdui-dialog-content">请检查账号和密码!</div>
+        <div class="mdui-dialog-actions">
+            <button class="mdui-btn mdui-ripple" mdui-dialog-close>确定</button>
+        </div>
+    </div>
+</div>
+    <script>
+        $('#login').click(function () {
+            $.post("/login",{"username":$('#username').val(),"password":$('#password').val()},function (res) {
+                if (res.success){
+                    window.location="/main";
+                } else{
+                    var inst = new mdui.Dialog('#example-1');
+                    inst.open();
+                }
+            })
+        })
+    </script>
+</body>
+</html>
