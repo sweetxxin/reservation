@@ -3,44 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="46253ef0-a45f-4f91-877f-cdceb1825d21" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/xxin/reservation/controller/WechatController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xxin/reservation/controller/WechatController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/xxin/reservation/ReservationApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/xxin/reservation/ReservationApplication.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/xxin/reservation/aop/RemindAspect.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/xxin/reservation/aop/RemindAspect.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/xxin/reservation/conf/HttpsConfig$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/xxin/reservation/conf/HttpsConfig$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/xxin/reservation/conf/InterceptorConf.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/xxin/reservation/conf/InterceptorConf.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/xxin/reservation/controller/HallController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/xxin/reservation/controller/HallController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/xxin/reservation/controller/OrderController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/xxin/reservation/controller/OrderController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/xxin/reservation/controller/QRCodeController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/xxin/reservation/controller/QRCodeController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/xxin/reservation/controller/ReservationController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/xxin/reservation/controller/ReservationController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/xxin/reservation/controller/ShopController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/xxin/reservation/controller/ShopController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/xxin/reservation/controller/StatisticController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/xxin/reservation/controller/StatisticController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/xxin/reservation/controller/UserController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/xxin/reservation/controller/UserController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/xxin/reservation/controller/WechatController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/xxin/reservation/controller/WechatController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/xxin/reservation/entity/FormId.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/xxin/reservation/entity/FormId.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/xxin/reservation/entity/Hall.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/xxin/reservation/entity/Hall.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/xxin/reservation/entity/Order.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/xxin/reservation/entity/Order.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/xxin/reservation/entity/Remind.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/xxin/reservation/entity/Remind.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/xxin/reservation/entity/Shop.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/xxin/reservation/entity/Shop.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/xxin/reservation/entity/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/xxin/reservation/entity/User.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/xxin/reservation/entity/WeChat.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/xxin/reservation/entity/WeChat.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/xxin/reservation/enums/OrderStatus.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/xxin/reservation/enums/OrderStatus.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/xxin/reservation/enums/UserType.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/xxin/reservation/enums/UserType.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/xxin/reservation/interceptor/LoginInterceptor.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/xxin/reservation/interceptor/LoginInterceptor.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/xxin/reservation/repository/FormIdRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/xxin/reservation/repository/FormIdRepository.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/xxin/reservation/repository/HallRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/xxin/reservation/repository/HallRepository.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/xxin/reservation/repository/OrderRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/xxin/reservation/repository/OrderRepository.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/xxin/reservation/repository/RemindRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/xxin/reservation/repository/RemindRepository.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/xxin/reservation/repository/ShopRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/xxin/reservation/repository/ShopRepository.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/xxin/reservation/repository/UserRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/xxin/reservation/repository/UserRepository.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/xxin/reservation/service/HallService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/xxin/reservation/service/HallService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/xxin/reservation/service/OrderService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/xxin/reservation/service/OrderService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/xxin/reservation/service/ShopService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/xxin/reservation/service/ShopService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/xxin/reservation/service/StatisticService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/xxin/reservation/service/StatisticService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/xxin/reservation/service/UserService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/xxin/reservation/service/UserService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/xxin/reservation/service/WechatService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/xxin/reservation/service/WechatService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/xxin/reservation/util/Message.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/xxin/reservation/util/Message.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/xxin/reservation/util/RemindFactory.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/xxin/reservation/util/RemindFactory.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/index.html" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -141,7 +103,7 @@
     <session id="-1258435800">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="1" />
+          <entry key="project.closed" value="2" />
           <entry key="project.open.time.1" value="1" />
           <entry key="project.open.time.27" value="1" />
           <entry key="project.opened" value="2" />
@@ -189,8 +151,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/xxin/reservation/controller/WechatController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
-              <caret line="92" column="54" selection-start-line="92" selection-start-column="54" selection-end-line="92" selection-end-column="54" />
+            <state relative-caret-position="2490">
+              <caret line="94" column="47" lean-forward="true" selection-start-line="94" selection-start-column="47" selection-end-line="94" selection-end-column="47" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="method#auth#0;class#WechatController#0" />
@@ -327,7 +289,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="AndroidView" />
       <pane id="ProjectPane">
         <subPane>
@@ -339,13 +301,73 @@
             <path>
               <item name="reservation" type="b2602c69:ProjectViewProjectNode" />
               <item name="reservation" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="reservation" type="b2602c69:ProjectViewProjectNode" />
+              <item name="reservation" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="reservation" type="b2602c69:ProjectViewProjectNode" />
+              <item name="reservation" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="reservation" type="b2602c69:ProjectViewProjectNode" />
+              <item name="reservation" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="reservation" type="b2602c69:ProjectViewProjectNode" />
+              <item name="reservation" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="xxin" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="reservation" type="b2602c69:ProjectViewProjectNode" />
+              <item name="reservation" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="xxin" type="462c0819:PsiDirectoryNode" />
+              <item name="reservation" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="reservation" type="b2602c69:ProjectViewProjectNode" />
+              <item name="reservation" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="reservation" type="b2602c69:ProjectViewProjectNode" />
+              <item name="reservation" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="reservation" type="b2602c69:ProjectViewProjectNode" />
+              <item name="reservation" type="462c0819:PsiDirectoryNode" />
               <item name="target" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -517,7 +539,7 @@
       <workItem from="1561386012863" duration="807000" />
       <workItem from="1561387001017" duration="1875000" />
       <workItem from="1561395145807" duration="1086000" />
-      <workItem from="1561399845212" duration="216000" />
+      <workItem from="1561399845212" duration="1489000" />
     </task>
     <task id="LOCAL-00001" summary="配置ssl">
       <created>1561009277029</created>
@@ -729,7 +751,14 @@
       <option name="project" value="LOCAL" />
       <updated>1561395497227</updated>
     </task>
-    <option name="localTasksCounter" value="31" />
+    <task id="LOCAL-00031" summary="登陆问题">
+      <created>1561400101819</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1561400101821</updated>
+    </task>
+    <option name="localTasksCounter" value="32" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -765,13 +794,12 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="80635000" />
+    <option name="totallyTimeSpent" value="82124000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1295" height="695" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.17704123" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.34357315" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Persistence" order="2" side_tool="true" />
       <window_info id="Designer" order="3" />
@@ -783,7 +811,7 @@
       <window_info id="Web" order="9" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49636218" visible="true" weight="0.125" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49636218" weight="0.23880596" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -1137,15 +1165,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/templates/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
+        <state relative-caret-position="1020">
           <caret line="34" column="22" selection-start-line="34" selection-start-column="22" selection-end-line="34" selection-end-column="22" />
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/statistic.html">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/xxin/reservation/controller/WechatController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="92" column="54" selection-start-line="92" selection-start-column="54" selection-end-line="92" selection-end-column="54" />
+        <state relative-caret-position="2490">
+          <caret line="94" column="47" lean-forward="true" selection-start-line="94" selection-start-column="47" selection-end-line="94" selection-end-column="47" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#auth#0;class#WechatController#0" />
@@ -1159,9 +1190,6 @@
           </folding>
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/statistic.html">
-      <provider selected="true" editor-type-id="text-editor" />
     </entry>
   </component>
   <component name="masterDetails">

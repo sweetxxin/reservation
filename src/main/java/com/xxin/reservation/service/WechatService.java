@@ -64,9 +64,7 @@ public class WechatService {
 
     }
     public boolean sendRemind(HashMap param) throws IOException {
-        if (this.accessToken==null){
-            this.accessToken = getAccessToken();
-        }
+        this.accessToken = getAccessToken();
         String url = "https://api.weixin.qq.com/cgi-bin/message/wxopen/template/send?access_token="+this.accessToken;
         OkHttpClient client = new OkHttpClient();
         ObjectMapper mapper = new ObjectMapper();
