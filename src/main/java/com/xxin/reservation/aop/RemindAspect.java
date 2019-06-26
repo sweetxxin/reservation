@@ -62,7 +62,7 @@ public class RemindAspect {
                     remind.setOrder(order);
                     wechatService.saveRemind(remind);
                 }
-                }
+            }
         }else{
             System.out.println("formID不足或无效，无法发送通知");
         }

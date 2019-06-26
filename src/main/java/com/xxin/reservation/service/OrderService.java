@@ -124,7 +124,7 @@ public class OrderService {
         }else if (val.contains("未")){
             res= OrderStatus.CREATE.getCode();
             System.out.println("模糊查询未处理");
-        }else if (val.contains("中")){
+        }else if (val.contains("中")||val.contains("处理中")){
            res = OrderStatus.DEALING.getCode();
             System.out.println("模糊处理中");
         }

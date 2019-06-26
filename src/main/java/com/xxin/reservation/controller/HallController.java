@@ -69,6 +69,7 @@ public class HallController {
         User user = userService.getUserByUserName(s.getCharge().getUserName());
         if (user==null){
             user = new User();
+            user.setMobile(s.getCharge().getMobile());
             user.setUserName(s.getCharge().getUserName());
             user.setType(UserType.HALL_ADMIN.getCode());
             user.setPassword("123456");
