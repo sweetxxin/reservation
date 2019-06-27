@@ -39,14 +39,14 @@ public class ShopRepositoryTest {
 
     @Test
     public void addHall(){
-        for (int i=1;i<10;i++) {
+        for (int i=6;i<10;i++) {
             Hall hall = new Hall();
             User charge = new User();
-            charge.setUserName("营业厅管理"+i);
+            charge.setUserName("天河营业厅管理"+i);
             charge.setType(UserType.HALL_ADMIN.getCode());
             hall.setCharge(charge);
             hall.setName("天河营业厅"+i);
-            hall.setAddress("天河城");
+            hall.setAddress("天河城地址"+i);
             hall.setCreateTime(new Date());
             hall.setPhone(1234456+i);
             userRepository.save(charge);
@@ -54,7 +54,7 @@ public class ShopRepositoryTest {
         }
     }
     @Test public void addShop(){
-        for (int i = 1; i < 10; i++) {
+        for (int i = 2; i <=5; i++) {
             User user = new User();
             user.setCreateTime(new Date());
             user.setMobile(124339222+i);
@@ -62,7 +62,7 @@ public class ShopRepositoryTest {
             user.setType(UserType.Shop_Admin.getCode());
             userRepository.save(user);
             Hall hall = new Hall();
-            hall.setMainId("b2d6a6a6-927d-4cef-af53-ecbfe47303a2");
+            hall.setMainId("dba16204-a226-45fa-b363-399cb5c6bde8");
             Shop shop = new Shop();
             shop.setCharge(user);
             shop.setHall(hall);
@@ -76,12 +76,12 @@ public class ShopRepositoryTest {
     @Test
     public void addOrder(){
         Shop shop = new Shop();
-        shop.setMainId("ddc8ff70-6d22-4f34-b4d1-ca3afa21633a");
-        for (int i = 1; i < 10; i++) {
+        shop.setMainId("53f94086-8f0e-4d87-95de-79dbc67c84ff");
+        for (int i = 15; i < 20; i++) {
             Order order = new Order();
-            order.setStatus(2);
+            order.setStatus(3);
             order.setAssessment("好评");
-            order.setOrderNo("OD20190600"+i);
+            order.setOrderNo("OD20180600"+i);
             order.setAddress("大学城南");
             order.setCreateTime(new Date());
             order.setShop(shop);
